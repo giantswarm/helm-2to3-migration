@@ -3,10 +3,14 @@
 # Declare variables to be passed into your templates.
 
 name: helm-2to3-migration
-namespace: kube-system
+namespace: giantswarm
 
 userID: 1000
 groupID: 1000
+
+global:
+  image:
+    registry: quay.io
 
 image:
   registry: quay.io

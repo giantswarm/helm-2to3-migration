@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ .Values.name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Values.name }}
     giantswarm.io/service-type: "managed"
@@ -27,7 +27,8 @@ spec:
         - name: {{ .Values.name }}
           mountPath: /data/
       volumes:
-        - configMap:
+        - name: config-volume
+          configMap:
             name: {{ .Values.name }}
             namespace: {{ .Release.Namespace }}
       restartPolicy: Never
