@@ -18,18 +18,14 @@ spec:
           image: "{{ .Values.global.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           command: ["/bin/sh" , "-c"]
           args:
-            - while IFS= read -r line;
-            - do
-            - helm 2to3 convert --delete-v2-releases --tiller-ns {{ .Values.tiller.namespace }} "$line";
-            - echo helm release "$line" converted;
-            - done <  /data/releases
+            - while IFS= read -r line; do helm 2to3 convert --delete-v2-releases --tiller-ns {{ .Values.tiller.namespace }} "$line"; done < /data/config/releases
       volumeMounts:
-        - name: {{ .Values.name }}
-          mountPath: /data/
+        - name: config-volume
+          mountPath: /data/config
       volumes:
         - name: config-volume
           configMap:
             name: {{ .Values.name }}
-            namespace: {{ .Release.Namespace }}
+            namespace: {{ .Value.Namespace }}
       restartPolicy: Never
   backoffLimit: 3
