@@ -6,10 +6,10 @@ workflows:
   package-and-push-chart-on-tag:
     jobs:
       - architect/push-to-app-catalog:
-          name: "package and push {CHART-NAME} chart"
+          name: "package and push helm-2to3-migration chart"
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
-          chart: "{CHART-NAME}"
+          chart: "helm-2to3-migration"
           # Trigger job on git tag.
           filters:
             tags:
