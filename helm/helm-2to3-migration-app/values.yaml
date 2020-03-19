@@ -15,7 +15,7 @@ global:
 image:
   registry: quay.io
   name: giantswarm/helm-2to3
-  tag: latest
+  tag: 1.0.1
 
 tiller:
   namespace: "kube-system"
