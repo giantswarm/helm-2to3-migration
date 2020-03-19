@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-name: chart-operator-helm-2to3-migration
+name: helm-2to3-migration
 namespace: kube-system
 
 userID: 1000
