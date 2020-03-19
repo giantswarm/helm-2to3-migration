@@ -9,7 +9,7 @@ workflows:
           name: "package and push helm-2to3-migration chart"
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
-          chart: "helm-2to3-migration"
+          chart: "helm-2to3-migration-app"
           # Trigger job on git tag.
           filters:
             tags:
