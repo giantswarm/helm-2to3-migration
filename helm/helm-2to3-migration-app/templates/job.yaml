@@ -26,6 +26,6 @@ spec:
         - name: config-volume
           configMap:
             name: {{ .Values.name }}
-            namespace: {{ .Value.Namespace }}
+            namespace: {{ .Values.Namespace }}
       restartPolicy: Never
   backoffLimit: 3
