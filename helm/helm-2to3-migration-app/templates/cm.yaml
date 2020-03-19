@@ -8,6 +8,4 @@ metadata:
     giantswarm.io/service-type: "managed"
 data:
   releases: |-
-    {{- range .Values.releases }}
-    {{ . }}
-    {{- end }}
+    {{ join "," .Values.releases -}}
