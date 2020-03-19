@@ -18,7 +18,7 @@ spec:
           image: "{{ .Values.global.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           command: ["/bin/sh" , "-c"]
           args:
-            - for r in $(cat /data/config/releases | tr "," "\n"); do 2to3 convert --delete-v2-releases --tiller-ns {{ .Values.tiller.namespace }} "$line"; done;
+            - for r in $(cat /data/config/releases | tr "," "\n"); do 2to3 convert --delete-v2-releases --tiller-ns {{ .Values.tiller.namespace }} "$r"; done;
           volumeMounts:
             - name: config-volume
               mountPath: /data/config
