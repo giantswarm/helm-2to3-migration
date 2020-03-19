@@ -19,9 +19,9 @@ spec:
           command: ["/bin/sh" , "-c"]
           args:
             - while IFS= read -r line; do helm 2to3 convert --delete-v2-releases --tiller-ns {{ .Values.tiller.namespace }} "$line"; done < /data/config/releases
-      volumeMounts:
-        - name: config-volume
-          mountPath: /data/config
+          volumeMounts:
+            - name: config-volume
+              mountPath: /data/config
       volumes:
         - name: config-volume
           configMap:
