@@ -3,3 +3,4 @@ appVersion: 0.5.0
 description: A Helm chart to create a job for helmV3 migration.
 name: helm-2to3-migration-app
 version: [[ .Version ]]
+home: https://github.com/giantswarm/helm-2to3-migration
