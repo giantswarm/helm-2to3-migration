@@ -1,10 +1,7 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/{APP-NAME}-app.svg?style=shield)](https://circleci.com/gh/giantswarm/{APP-NAME}-app)
+[![CircleCI](https://circleci.com/gh/giantswarm/helm-2to3-migration.svg?style=shield)](https://circleci.com/gh/giantswarm/helm-2to3-migration)
 
-# {APP-NAME}-app chart
+# helm-2to3-migration chart
 
-Giant Swarm offers a {APP-NAME} Managed App which can be installed in tenant clusters.
-Here we define the {APP-NAME} chart with its templates and default configuration.
+Giant Swarm offers a helm-2to3-migration Managed App which can be installed in tenant clusters.
+Here we define the helm-2to3-migration chart with its templates and default configuration.
 
-## Credit
-
-* {APP HELM REPOSITORY}

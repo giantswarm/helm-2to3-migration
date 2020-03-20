@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.name }}
+    giantswarm.io/service-type: "managed"
+spec:
+  ttlSecondsAfterFinished: 30
+  template:
+    spec:
+      serviceAccountName: {{ .Values.name }}
+      securityContext:
+        runAsUser: {{ .Values.userID }}
+        runAsGroup: {{ .Values.groupID }}
+      containers:
+        - name: {{ .Values.name }}
+          image: "{{ .Values.global.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          command: ["/bin/sh" , "-c"]
+          args:
+            - for r in $(cat /data/config/releases | tr "," "\n"); do 2to3 convert --delete-v2-releases --tiller-ns {{ .Values.tiller.namespace }} "$r"; if [ $? -ne 0 ]; then i=$((i+1)); fi done; if [ $i -gt 0 ]; then echo "Failed $i times"; exit 127; fi
+          volumeMounts:
+            - name: config-volume
+              mountPath: /data/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ .Values.name }}
+            namespace: {{ .Values.Namespace }}
+      restartPolicy: Never
+  backoffLimit: 3
