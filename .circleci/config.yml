@@ -50,8 +50,8 @@ workflows:
 
       - architect/push-to-app-catalog:
           name: "push-helm-2to3-migration-to-default-catalog"
-          app_catalog: "giantswarm-default-catalog"
-          app_catalog_test: "giantswarm-default-test-catalog"
+          app_catalog: "default-catalog"
+          app_catalog_test: "default-test-catalog"
           chart: "helm-2to3-migration-app"
           requires:
             - push-helm-2to3-migration-to-quay
