@@ -17,16 +17,22 @@ spec:
       containers:
         - name: {{ .Values.name }}
           image: "{{ .Values.global.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
-          command: ["/bin/sh" , "-c"]
-          args:
-            - for r in $(cat /data/config/releases | tr "," "\n"); do 2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r"; if [ $? -ne 0 ]; then i=$((i+1)); fi done; if [ $i -gt 0 ]; then echo "Failed $i times"; exit 127; fi
+          command: ["/scripts/run.sh"]
           volumeMounts:
             - name: config-volume
               mountPath: /data/config
+            - name: scripts
+              mountPath: /scripts/run.sh
+              subPath: run.sh
       volumes:
         - name: config-volume
           configMap:
             name: {{ .Values.name }}
+            namespace: {{ .Values.Namespace }}
+        - name: scripts
+          configMap:
+            defaultMode: 511
+            name: {{ .Values.name }}-scripts
             namespace: {{ .Values.Namespace }}
       restartPolicy: Never
   backoffLimit: 3
