@@ -20,9 +20,11 @@ rules:
       - configmaps
       - secrets
     verbs:
+      - "get"
       - "list"
       - "create"
       - "delete"
+      - "update"
   - apiGroups:
       - ""
     resources:
