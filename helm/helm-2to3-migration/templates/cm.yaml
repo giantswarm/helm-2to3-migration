@@ -24,8 +24,11 @@ data:
     i=0
     for r in $(cat /data/config/releases | tr "," "\n");
     do
-      if ! 2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r"; then
+      if ! 2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r";
+      then
          i=$((i+1));
+      else
+         kubectl -n {{ .Values.tiller.namespace }} patch cm '[{ "op": "replace", "path": "/metadata/labels/OWNER" value: "BACKUP-HELM-2" }]' --type=json
       fi
     done;
 
