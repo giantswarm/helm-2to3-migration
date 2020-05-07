@@ -8,4 +8,28 @@ metadata:
     giantswarm.io/service-type: "managed"
 data:
   releases: |-
-    {{ join "," .Values.releases -}}
+    {{ join "," .Values.releases }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}-scripts
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.name }}
+    giantswarm.io/service-type: "managed"
+data:
+  run.sh: |-
+    #!/bin/sh
+    i=0
+    for r in $(cat /data/config/releases | tr "," "\n");
+    do
+      if ! 2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r"; then
+         i=$((i+1));
+      fi
+    done;
+
+    if [ $i -gt 0 ]; then
+      echo "Failed $i times";
+      exit 127;
+    fi
