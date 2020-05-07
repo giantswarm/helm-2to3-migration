@@ -24,8 +24,11 @@ data:
     i=0
     for r in $(cat /data/config/releases | tr "," "\n");
     do
-      if ! 2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r"; then
+      if ! 2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r";
+      then
          i=$((i+1));
+      else
+         kubectl -n {{ .Values.tiller.namespace }} get cm -lNAME=$r -o yaml | sed 's/\(OWNER: TILLER\)/OWNER: HELM-BACKUP-V2/' | kubectl replace -f -
       fi
     done;
 
