@@ -12,34 +12,34 @@ rules:
     resources:
       - pods
     verbs:
-      - "get"
-      - "list"
+      - get
+      - list
   - apiGroups:
       - ""
     resources:
       - configmaps
       - secrets
     verbs:
-      - "get"
-      - "list"
-      - "create"
-      - "delete"
-      - "update"
+      - get
+      - list
+      - create
+      - delete
+      - update
   - apiGroups:
-      - ""
+      - batch
     resources:
       - jobs
     verbs:
-      - "create"
-      - "delete"
+      - create
+      - delete
   - apiGroups:
-      - extensions
+      - policy
     resources:
       - podsecuritypolicies
     resourceNames:
       - {{ .Values.name }}
     verbs:
-      - "use"
+      - use
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
