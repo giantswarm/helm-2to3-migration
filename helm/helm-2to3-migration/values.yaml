@@ -8,10 +8,6 @@ namespace: giantswarm
 userID: 1000
 groupID: 1000
 
-global:
-  image:
-    registry: quay.io
-
 image:
   registry: quay.io
   name: giantswarm/helm-2to3-migration
