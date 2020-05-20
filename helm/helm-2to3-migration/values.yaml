@@ -10,8 +10,9 @@ groupID: 1000
 
 image:
   registry: "quay.io"
-  name: "giantswarm/helm-2to3-migration"
-  tag: [[ .Version ]]
+
+image_name: "giantswarm/helm-2to3-migration"
+image_tag: [[ .Version ]]
 
 tiller:
   namespace: "kube-system"
