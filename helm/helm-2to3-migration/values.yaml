@@ -9,9 +9,9 @@ userID: 1000
 groupID: 1000
 
 image:
-  registry: "quay.io"
-  name: "giantswarm/helm-2to3-migration"
   tag: [[ .Version ]]
+  registry: quay.io
+  name: giantswarm/helm-2to3-migration
 
 tiller:
-  namespace: "kube-system"
+  namespace: kube-system
