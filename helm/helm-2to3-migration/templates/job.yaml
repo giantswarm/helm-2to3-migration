@@ -16,7 +16,7 @@ spec:
         runAsGroup: {{ .Values.groupID }}
       containers:
         - name: {{ .Values.name }}
-          image: "{{ .Values.image.registry }}/{{ .Values.image_name }}:{{ .Values.image_tag }}"
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           command: ["/scripts/run.sh"]
           volumeMounts:
             - name: config-volume
