@@ -7,7 +7,7 @@ metadata:
     app: {{ .Values.name }}
     giantswarm.io/service-type: "managed"
 spec:
-  ttlSecondsAfterFinished: 30
+  ttlSecondsAfterFinished: 3600
   template:
     spec:
       serviceAccountName: {{ .Values.name }}
