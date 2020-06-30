@@ -34,5 +34,5 @@ spec:
             defaultMode: 511
             name: {{ .Values.name }}-scripts
             namespace: {{ .Values.Namespace }}
-      restartPolicy: Never
+      restartPolicy: OnFailure
   backoffLimit: 3
