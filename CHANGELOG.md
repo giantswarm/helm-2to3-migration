@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [1.1.7] - 2020-07-01
+
 ### Changed
 
 - Configure migration job to retry on failure.
@@ -54,8 +56,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial version
 
-[Unreleased]: https://github.com/giantswarm/helm-2to3-migration-app/compare/v1.1.6...HEAD
+[Unreleased]: https://github.com/giantswarm/helm-2to3-migration-app/compare/v1.1.7...HEAD
 
+[1.1.7]: https://github.com/giantswarm/helm-2to3-migration-app/compare/v1.1.6..v1.1.7
 [1.1.6]: https://github.com/giantswarm/helm-2to3-migration-app/compare/v1.1.3..v1.1.6
 [1.1.3]: https://github.com/giantswarm/helm-2to3-migration-app/compare/v1.1.2..v1.1.3
 [1.1.2]: https://github.com/giantswarm/helm-2to3-migration-app/compare/v1.1.1..v1.1.2
