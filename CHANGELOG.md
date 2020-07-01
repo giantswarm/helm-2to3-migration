@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Configure migration job to retry on failure.
+
 ### [1.1.6] - 2020-06-19
 
 ### Changed

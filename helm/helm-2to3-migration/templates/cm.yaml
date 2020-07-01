@@ -21,18 +21,35 @@ metadata:
 data:
   run.sh: |-
     #!/bin/sh
+
     i=0
+    j=0
+
     for r in $(cat /data/config/releases | tr "," "\n");
     do
-      if ! 2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r";
-      then
-         i=$((i+1));
+      errFile=$(mktemp)
+      2to3 convert --tiller-ns {{ .Values.tiller.namespace }} "$r" 2>$errFile
+      ret=$?
+
+      cat $errFile
+
+      if [[ $ret -gt 0 ]]; then
+        if [[ $(cat errFile) ==  *"has no deployed releases"* ]]; then
+           i=$((i+1));
+        else
+           j=$((j+1));
+        fi
       else
          kubectl -n {{ .Values.tiller.namespace }} get cm -lNAME=$r -o yaml | sed 's/\(OWNER: TILLER\)/OWNER: HELM-BACKUP-V2/' | kubectl replace -f -
       fi
     done;
 
     if [ $i -gt 0 ]; then
-      echo "Failed $i times";
+      echo "Already migrated $i releases";
+    fi
+
+    if [ $j -gt 0 ]; then
+      echo "Failed $j times";
       exit 127;
     fi
+

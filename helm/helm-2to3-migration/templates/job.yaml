@@ -7,7 +7,7 @@ metadata:
     app: {{ .Values.name }}
     giantswarm.io/service-type: "managed"
 spec:
-  ttlSecondsAfterFinished: 30
+  ttlSecondsAfterFinished: 3600
   template:
     spec:
       serviceAccountName: {{ .Values.name }}
@@ -34,5 +34,5 @@ spec:
             defaultMode: 511
             name: {{ .Values.name }}-scripts
             namespace: {{ .Values.Namespace }}
-      restartPolicy: Never
+      restartPolicy: OnFailure
   backoffLimit: 3
